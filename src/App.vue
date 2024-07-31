@@ -1,13 +1,15 @@
-<script>
-export default {
-  
-}
-</script>
-<template lang="">
-  <div>
-    <h1>VITE YU-GI-OH</h1>
-  </div>
-</template>
-<style lang="scss">
-  @use './styles/generals.scss'
-</style>
+  <script>
+  import AppHeaderVue from './components/AppHeader.vue'
+
+  export default {
+    components: {
+      AppHeaderVue
+    }
+  }
+  </script>
+  <template lang="">
+    <AppHeaderVue/>
+  </template>
+  <style lang="scss">
+    @use './styles/generals.scss'
+  </style>
