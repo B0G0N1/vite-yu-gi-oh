@@ -1,11 +1,29 @@
   <script>
-  import AppHeaderVue from './components/AppHeader.vue'
+  import { store } from './store.js';
+  import axios from 'axios';
+
+  import AppHeaderVue from './components/AppHeader.vue';
   import AppMainContent from './components/AppMainContent.vue';
 
   export default {
     components: {
       AppHeaderVue,
-      AppMainContent
+      AppMainContent,
+    },
+    created() {
+      this.getCardList();
+    },
+    methods: {
+      getCardList() {
+        axios.get(store.apiUrl).then((result) => {
+          store.cardList = result.data.data;
+        });
+      }
+    },
+    data() {
+      return {
+        store
+      }
     }
   }
   </script>

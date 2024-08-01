@@ -1,6 +1,12 @@
 <script>
+import { store } from '../store.js';
+
 export default {
-    
+    data() {
+        return {
+            store
+        }
+    }
 }
 </script>
 <template lang="html">
@@ -28,7 +34,7 @@ export default {
     </main>
 </template>
 <style lang="scss">
-    @import '../styles/variables';
+    @import "../styles/_partials/variables";
     .bg-orange {
         background-color: $primary-color;
     }
