@@ -12,17 +12,35 @@
     },
     created() {
       this.getCardList();  // Chiama il metodo getCardList quando il componente viene creato
-      this.getArchetipeList();
+      this.getArchetypeList();
     },
     methods: {
       getCardList() {
-        axios.get(store.apiUrl).then((result) => {  // Effettua una richiesta GET all'API usando l'url da store
-          store.cardList = result.data.data;  // Assegna i dati delle carte alla lista cardList nello store
+        let myUrl = `${store.cardApiUrl}`;
+        if (store.searchText != null || store.archetypeName != "All") {
+            if (store.searchText != null && store.archetypeName == "All") {
+                myUrl += `?fname=${store.searchText.toLowerCase()}`
+            }
+
+            if (store.searchText == null && store.archetypeName != "All") {
+                myUrl += `?archetype=${store.archetypeName}`
+            }
+
+            if (store.searchText != null && store.archetypeName != "All") {
+                myUrl += `?fname=${store.searchText.toLowerCase()}&archetype=${store.archetypeName}`
+            }
+        }
+        else {
+          myUrl += '?num=20&offset=0';
+        }
+        axios.get(myUrl).then((result) => {
+            store.cardList = result.data.data;
         });
       },
-      getArchetipeList() {
-        axios.get(store.archetipeApiUrl).then((result) => {
-          store.archetipeList = result.data;
+      getArchetypeList() {
+        axios.get(store.archetypeApiUrl).then((result) => {
+          store.archetypeList = result.data;
+          store.archetypeList.unshift({"archetype_name": "All"});
         });
       }
     },
@@ -34,9 +52,9 @@
   }
 </script>
 
-<template lang="">
+<template lang="html">
   <AppHeaderVue/>  <!-- Utilizza il componente AppHeaderVue nel template -->
-  <AppMainContent/>  <!-- Utilizza il componente AppMainContent nel template -->
+  <AppMainContent @cardFilter="getCardList"/>  <!-- Utilizza il componente AppMainContent nel template -->
 </template>
 
 <style lang="scss">
