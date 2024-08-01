@@ -31,7 +31,7 @@
             }
         }
         else {
-          myUrl += '?num=20&offset=0';
+          myUrl += '?num=200&offset=0';
         }
         axios.get(myUrl).then((result) => {
             store.cardList = result.data.data;
