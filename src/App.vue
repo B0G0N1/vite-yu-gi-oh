@@ -17,25 +17,15 @@
     methods: {
       // Metodo per ottenere la lista delle carte
       getCardList() {
-        let myUrl = `${store.cardApiUrl}`;  // Inizializza l'URL di base per l'API delle carte
+        // Inizializza l'URL di base per l'API delle carte e ne limita il risultato a 50
+        let myUrl = `${store.cardApiUrl}?num=50&offset=0`;
         
-        // Verifica se ci sono filtri di ricerca attivi
-        if (store.searchText != null || store.archetypeName != "All") {
-          // Se c'è solo il filtro per il testo di ricerca
-          if (store.searchText != null && store.archetypeName == "All") {
-            myUrl += `?fname=${store.searchText.toLowerCase()}`;
-          }
-          // Se c'è solo il filtro per il nome dell'archetipo
-          if (store.searchText == null && store.archetypeName != "All") {
-            myUrl += `?archetype=${store.archetypeName}`;
-          }
-          // Se ci sono entrambi i filtri
-          if (store.searchText != null && store.archetypeName != "All") {
-            myUrl += `?fname=${store.searchText.toLowerCase()}&archetype=${store.archetypeName}`;
-          }
-          myUrl += '&num=20&offset=0';  // Aggiunge i parametri per il numero di risultati e l'offset
-        } else {
-          myUrl += '?num=50&offset=0';  // Se non ci sono filtri, imposta i parametri di default
+        // Verifica se ci sono filtri di ricerca attivi e in caso aggiurna l'URL API
+        if (store.searchText != null) {
+          myUrl += `&fname=${store.searchText.toLowerCase()}`;
+        }
+        if (store.archetypeName !== "All") {
+          myUrl += `&archetype=${store.archetypeName}`;
         }
         
         // Effettua la richiesta GET all'API
