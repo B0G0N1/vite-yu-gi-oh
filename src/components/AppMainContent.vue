@@ -12,8 +12,9 @@ export default {
         }
     },
     methods: {
+        // Metodo per gestire il cambiamento dei parametri
         parametersChange() {
-            this.$emit('cardFilter');
+            this.$emit('cardFilter');  // Emette un evento per filtrare le carte
         }
     }
 }
@@ -23,9 +24,10 @@ export default {
     <main class="bg-orange">  <!-- Contenitore principale con sfondo arancione -->
         <div class="container py-4">  <!-- Contenitore centrale con padding verticale -->
             <div class="d-sm-flex justify-content-between">
+                <!-- Sezione per la selezione dell'archetipo -->
                 <div>
                     <h6>Archetipo</h6>
-                    <select v-model="store.archetypeName" id="yugioh-archetype" name="yugioh-archetype" class="p-2 mb-3 w-100" @change="parametersChange">  <!-- Dropdown per selezionare le categorie delle carte -->
+                    <select v-model="store.archetypeName" id="yugioh-archetype" name="yugioh-archetype" class="p-2 mb-3 w-100" @change="parametersChange">
                         <option
                             v-for="(archetype, index) in store.archetypeList"
                             :key="`archetype-${index}`"
@@ -34,17 +36,20 @@ export default {
                         </option>
                     </select>
                 </div>
+                <!-- Sezione per il filtro di testo -->
                 <div>
                     <h6>Filtra</h6>
                     <input class="w-100" type="text" placeholder="&nbsp;&nbsp;Inserisci testo" v-model="store.searchText" @input="parametersChange">
                 </div>
             </div>
-            <div class="content bg-white p-4 pb-0">  <!-- Contenitore con sfondo bianco e padding -->
-                <div class="d-sm-flex justify-content-between bg-lightblack text-white fw-bold p-3 mb-3">  <!-- Riga con sfondo nero chiaro, testo bianco e grassetto -->
+            <!-- Contenitore per visualizzare i risultati -->
+            <div class="content bg-white p-4 pb-0">
+                <div class="d-sm-flex justify-content-between bg-lightblack text-white fw-bold p-3 mb-3">
                     <p class="m-0">Found {{ store.cardList.length }} cards</p>  <!-- Mostra il numero di carte trovate -->
                     <p class="m-0">[Limited to 50 cards for not overload it]</p>
                 </div>
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">  <!-- Contenitore per le carte con 5 colonne per riga -->
+                <!-- Contenitore per le carte con layout responsive -->
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
                     <AppCard 
                         class="col"  
                         v-for="(card, index) in store.cardList"  
@@ -70,6 +75,6 @@ export default {
         background-color: $secondary-color;  // Applica il colore secondario di sfondo
     }
     input {
-        height: 2.5rem;
+        height: 2.5rem;  // Imposta l'altezza dell'input
     }
 </style>

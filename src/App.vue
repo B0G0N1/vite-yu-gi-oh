@@ -12,38 +12,44 @@
     },
     created() {
       this.getCardList();  // Chiama il metodo getCardList quando il componente viene creato
-      this.getArchetypeList();
+      this.getArchetypeList();  // Chiama il metodo getArchetypeList quando il componente viene creato
     },
     methods: {
+      // Metodo per ottenere la lista delle carte
       getCardList() {
-        let myUrl = `${store.cardApiUrl}`;
+        let myUrl = `${store.cardApiUrl}`;  // Inizializza l'URL di base per l'API delle carte
+        
+        // Verifica se ci sono filtri di ricerca attivi
         if (store.searchText != null || store.archetypeName != "All") {
-            if (store.searchText != null && store.archetypeName == "All") {
-                myUrl += `?fname=${store.searchText.toLowerCase()}`
-            }
-
-            if (store.searchText == null && store.archetypeName != "All") {
-                myUrl += `?archetype=${store.archetypeName}`
-            }
-
-            if (store.searchText != null && store.archetypeName != "All") {
-                myUrl += `?fname=${store.searchText.toLowerCase()}&archetype=${store.archetypeName}`
-            }
-            myUrl += '&num=20&offset=0';
+          // Se c'è solo il filtro per il testo di ricerca
+          if (store.searchText != null && store.archetypeName == "All") {
+            myUrl += `?fname=${store.searchText.toLowerCase()}`;
+          }
+          // Se c'è solo il filtro per il nome dell'archetipo
+          if (store.searchText == null && store.archetypeName != "All") {
+            myUrl += `?archetype=${store.archetypeName}`;
+          }
+          // Se ci sono entrambi i filtri
+          if (store.searchText != null && store.archetypeName != "All") {
+            myUrl += `?fname=${store.searchText.toLowerCase()}&archetype=${store.archetypeName}`;
+          }
+          myUrl += '&num=20&offset=0';  // Aggiunge i parametri per il numero di risultati e l'offset
+        } else {
+          myUrl += '?num=50&offset=0';  // Se non ci sono filtri, imposta i parametri di default
         }
-        else {
-          myUrl += '?num=50&offset=0';
-        }
+        
+        // Effettua la richiesta GET all'API
         axios.get(myUrl).then((result) => {
-            store.cardList = result.data.data;
+          store.cardList = result.data.data;  // Aggiorna la lista delle carte nello store
         }).catch((error) => {
-            store.cardList = [];
+          store.cardList = [];  // In caso di errore, imposta una lista vuota
         });
       },
+      // Metodo per ottenere la lista degli archetipi
       getArchetypeList() {
         axios.get(store.archetypeApiUrl).then((result) => {
-          store.archetypeList = result.data;
-          store.archetypeList.unshift({"archetype_name": "All"});
+          store.archetypeList = result.data;  // Aggiorna la lista degli archetipi nello store
+          store.archetypeList.unshift({"archetype_name": "All"});  // Aggiunge l'opzione "All" in cima alla lista
         });
       }
     },
@@ -61,5 +67,5 @@
 </template>
 
 <style lang="scss">
-  @use './styles/generals.scss'  // Importa gli stili generali dal file generals.scss
+  @use './styles/generals.scss';  // Importa gli stili generali dal file generals.scss
 </style>

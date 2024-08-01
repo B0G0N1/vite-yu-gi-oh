@@ -19,7 +19,7 @@ export default {
             <h4 class="fw-bold text-uppercase text-white">{{ card.name }}</h4>
             <!-- Titolo della carta con testo in grassetto, maiuscolo e bianco -->
             <p class="card-text">{{ card.archetype ? card.archetype : '[No Archetype]' }}</p>
-            <!-- Paragrafo con il tipo di archetipo della carta, se presente -->
+            <!-- Paragrafo con il tipo di archetipo della carta, se presente, altrimenti visualizza '[No Archetype]' -->
         </div>
     </div>
 </template>
