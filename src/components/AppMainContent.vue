@@ -18,16 +18,7 @@ export default {
     <main class="bg-orange">  <!-- Contenitore principale con sfondo arancione -->
         <div class="container py-3">  <!-- Contenitore centrale con padding verticale -->
             <select id="yugioh-races" name="yugioh-races" class="p-2 mb-3">  <!-- Dropdown per selezionare le categorie delle carte -->
-                <option value="dragon">Dragon</option>
-                <option value="spellcaster">Spellcaster</option>
-                <option value="zombie">Zombie</option>
-                <option value="warrior">Warrior</option>
-                <option value="beast">Beast</option>
-                <option value="machine">Machine</option>
-                <option value="fairy">Fairy</option>
-                <option value="fiend">Fiend</option>
-                <option value="aqua">Aqua</option>
-                <option value="pyro">Pyro</option>
+                <option v-for="(archetipe, index) in store.archetipeList"  :value="archetipe.archetype_name">{{ archetipe.archetype_name }}</option>
             </select>
             <div class="content bg-white p-5">  <!-- Contenitore con sfondo bianco e padding -->
                 <div class="row bg-lightblack text-white fw-bold p-3 mb-3">  <!-- Riga con sfondo nero chiaro, testo bianco e grassetto -->

@@ -1,5 +1,5 @@
 <!-------------------------
-    CONSEGNA ESERCIZIO
+   CONSEGNA ESERCIZIO 1
 -------------------------->
 
 Ciao ragazzi,
@@ -16,6 +16,24 @@ Creare un componente loader da visualizzare fintantoché i risultati non sono pr
 _Documentazione_: https://ygoprodeck.com/api-guide/
 Numero di push minimo: 12
 Buon lavoro!
+
+<!-------------------------
+   CONSEGNA ESERCIZIO 2
+-------------------------->
+
+Ciao ragazzi,
+Esercizio di oggi: _Vite Yu-Gi-Oh_
+nome repo: vite-yu-gi-oh
+_Descrizione:_
+Continuate a lavorare nella stessa repo di ieri e aggiungete una select per filtrare i risultati in base all’archetipo.
+Le option della select devono essere popolate dinamicamente chiamando questo endpoint dell'api:
+https://db.ygoprodeck.com/api/v7/archetypes.php
+Quando l'utente seleziona un valore dalla lista, viene effettuata una chiamata alle API con l'archetipo selezionato
+_Bonus:_
+Creare un componente che mostri il numero totale di risultati ottenuti.
+_Nota_:
+Per capire come comunicare alle API le carte dell'archetipo che volete, è necessario fare riferimento alla documentazione che trovate qui:
+https://ygoprodeck.com/api-guide/
 
 ### Passaggi Generici per Creare e Gestire un Progetto Vue con Vite
 

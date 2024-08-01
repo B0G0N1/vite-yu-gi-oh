@@ -12,11 +12,17 @@
     },
     created() {
       this.getCardList();  // Chiama il metodo getCardList quando il componente viene creato
+      this.getArchetipeList();
     },
     methods: {
       getCardList() {
         axios.get(store.apiUrl).then((result) => {  // Effettua una richiesta GET all'API usando l'url da store
           store.cardList = result.data.data;  // Assegna i dati delle carte alla lista cardList nello store
+        });
+      },
+      getArchetipeList() {
+        axios.get(store.archetipeApiUrl).then((result) => {
+          store.archetipeList = result.data;
         });
       }
     },
