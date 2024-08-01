@@ -29,12 +29,15 @@
             if (store.searchText != null && store.archetypeName != "All") {
                 myUrl += `?fname=${store.searchText.toLowerCase()}&archetype=${store.archetypeName}`
             }
+            myUrl += '&num=20&offset=0';
         }
         else {
-          myUrl += '?num=200&offset=0';
+          myUrl += '?num=50&offset=0';
         }
         axios.get(myUrl).then((result) => {
             store.cardList = result.data.data;
+        }).catch((error) => {
+            store.cardList = [];
         });
       },
       getArchetypeList() {
