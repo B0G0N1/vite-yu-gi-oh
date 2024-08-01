@@ -1,10 +1,10 @@
-@use "./_partials/variables";
-@import "../node_modules/bootstrap/scss/bootstrap";
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@use "./_partials/variables";  // Utilizza le variabili definite nel file _partials/variables.scss
+@import "../node_modules/bootstrap/scss/bootstrap";  // Importa i file SCSS di Bootstrap
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");  // Importa il font Roboto da Google Fonts
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', Helvetica, sans-serif;
+    margin: 0;  // Imposta il margine di tutti gli elementi a 0
+    padding: 0;  // Imposta il padding di tutti gli elementi a 0
+    box-sizing: border-box;  // Applica il box-sizing border-box a tutti gli elementi
+    font-family: 'Roboto', Helvetica, sans-serif;  // Imposta il font di tutti gli elementi a Roboto, con fallback a Helvetica e sans-serif
 }
